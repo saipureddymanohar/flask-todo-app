@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 My To-Do List</h1>
+        <form action="/add" method="POST">
+            <input type="text" name="task" placeholder="Enter new task" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul>
+            {% for task in tasks %}
+            <li class="{{ 'done' if task.done else '' }}">
+                {{ loop.index }}. {{ task.text }}
+                <a href="/done/{{ loop.index0 }}">✔</a>
+                <a href="/delete/{{ loop.index0 }}">❌</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
